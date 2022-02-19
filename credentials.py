@@ -16,6 +16,7 @@ class Credentials:
     def delete_credentials(self):
         Credentials.crededential_list.remove(self)
 
+    @classmethod
     def display_credentials(cls):
         return cls.crededential_list
 
@@ -27,7 +28,7 @@ class Credentials:
                 return True
         
 
-
+    @classmethod
     def credential_exists(cls, account):
         for credential in cls.crededential_list:
             if credential.account == account:
@@ -35,7 +36,7 @@ class Credentials:
         return False
 
 
-
+    @classmethod
     def generate_password(cls):
         sizes =10
 
