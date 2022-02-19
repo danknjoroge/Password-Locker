@@ -1,3 +1,5 @@
+from credentials import Credentials
+
 class User:
     '''
     A user class that will be used to generate class instances user
@@ -14,7 +16,18 @@ class User:
 
 
     def save_user(self):
+        '''Method that saves user object'''
         User.user_list.append(self)
+
+
+    @classmethod
+    def display_user(cls):
+        '''Method that returns user list'''
+        return cls.user_list
+
+
+    
+
 
 
     
