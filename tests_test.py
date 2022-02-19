@@ -63,7 +63,20 @@ class TestCredentials(unittest.TestCase):
         self.assertEqual(self.new_credentials.user_name, 'Daniel')
         self.assertEqual(self.new_credentials.password, 'Dan123')
 
+    def test_save_credentials(self):
+        self.new_credentials.save_credential()
+        self.assertEqual(len(Credentials.crededential_list),1)
 
+
+    def test_delete_credentials(self):
+        self.new_credentials.save_credential()
+        newCredential = Credentials('twitter','Joy','Joy123')
+        newCredential.save_credential()
+
+        self.new_credentials.delete_credentials()
+        self.assertEqual(len(Credentials.crededential_list),1)
+
+    
 
 
 
