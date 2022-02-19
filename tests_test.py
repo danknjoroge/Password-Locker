@@ -1,5 +1,5 @@
 import unittest
-# from credentials import Credentials
+from credentials import Credentials
 from user import User
 
 class TestUser(unittest.TestCase):
@@ -51,6 +51,17 @@ class TestUser(unittest.TestCase):
 
     
 
+class TestCredentials(unittest.TestCase):
+    def setUp(self):
+        self.new_credentials = Credentials('twitter','Daniel','Dan123')
+
+    def tearDown(self):
+        Credentials.crededential_list= []
+
+    def test_init(self):
+        self.assertEqual(self.new_credentials.account, 'twitter')
+        self.assertEqual(self.new_credentials.user_name, 'Daniel')
+        self.assertEqual(self.new_credentials.password, 'Dan123')
 
 
 
