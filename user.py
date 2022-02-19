@@ -26,6 +26,16 @@ class User:
         return cls.user_list
 
 
+    def delete_user(self):
+        User.user_list.remove(self)
+
+    def log_in(cls,username,password):
+        for user in cls.user_list:
+            if user.username == username and user.password == password:
+                return Credentials.crededential_list
+            return False
+
+
     
 
 
