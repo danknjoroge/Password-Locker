@@ -38,8 +38,10 @@ class Credentials:
 
     @classmethod
     def generate_password(cls):
-        sizes =10
+        stringSize =10
 
         passCombination = string.ascii_lowercase + string.ascii_uppercase + string.digits
-        generatedPassword = ''.join(choice(passCombination) for i in range(sizes))
+        generatedPassword = ''.join(choice(passCombination) for size in range(stringSize))
         return generatedPassword
+
+    

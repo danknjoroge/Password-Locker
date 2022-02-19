@@ -1,5 +1,4 @@
 
-
 # from credentials import Credentials
 
 class User:
@@ -31,11 +30,12 @@ class User:
     def delete_user(self):
         User.user_list.remove(self)
 
-    def log_in(cls,username,password):
+    @classmethod
+    def login(cls,username,password):
         for user in cls.user_list:
             if user.username == username and user.password == password:
-                return User.user_list()
-            return False
+                return User.user_list
+        return False
 
     @classmethod
     def user_exist(cls,username):

@@ -30,8 +30,16 @@ class TestUser(unittest.TestCase):
     def test_display_users(self):
         self.assertEqual(User.display_user(), User.user_list)
 
+
+    
     def test_login_user(self):
-        pass
+        self.new_user.save_user()
+        newUser = User('Mary','Mary1234')
+        newUser.save_user()
+
+        user = User.login('Mary','Mary1234')
+        self.assertEqual(user, User.user_list)
+
 
     def test_user_exists(self):
         self.new_user.save_user()
@@ -40,6 +48,8 @@ class TestUser(unittest.TestCase):
 
         useer = User.user_exist('Mary')
         self.assertTrue(useer)
+
+    
 
 
 
