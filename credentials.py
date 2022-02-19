@@ -19,7 +19,6 @@ class Credentials:
         return cls.crededential_list
 
     
-
     @classmethod
     def find_credentials(cls, account):
         for credential in cls.crededential_list:

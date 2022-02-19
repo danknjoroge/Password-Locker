@@ -35,6 +35,13 @@ class User:
                 return Credentials.crededential_list
             return False
 
+    @classmethod
+    def user_exist(cls,username,password):
+        for user in cls.user_list:
+            if user.username == username:
+                return True
+        return False
+
 
     
 
