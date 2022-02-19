@@ -1,3 +1,5 @@
+
+
 # from credentials import Credentials
 
 class User:
@@ -32,7 +34,7 @@ class User:
     def log_in(cls,username,password):
         for user in cls.user_list:
             if user.username == username and user.password == password:
-                return Credentials.crededential_list
+                return User.user_list()
             return False
 
     @classmethod
