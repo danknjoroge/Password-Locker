@@ -1,4 +1,5 @@
 from random import choice
+import string
 from user import User
 
 class Credentials:
@@ -35,3 +36,9 @@ class Credentials:
 
 
 
+    def generate_password(cls):
+        sizes =10
+
+        passCombination = string.ascii_lowercase + string.ascii_uppercase + string.digits
+        generatedPassword = ''.join(choice(passCombination) for i in range(sizes))
+        return generatedPassword
