@@ -38,7 +38,7 @@ class User:
             return False
 
     @classmethod
-    def user_exist(cls,username,password):
+    def user_exist(cls,username):
         for user in cls.user_list:
             if user.username == username:
                 return True

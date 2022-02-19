@@ -27,6 +27,23 @@ class TestUser(unittest.TestCase):
         self.new_user.delete_user()
         self.assertEqual(len(User.user_list),1)
 
+    def test_display_users(self):
+        self.assertEqual(User.display_user(), User.user_list)
+
+    def test_login_user(self):
+        pass
+
+    def test_user_exists(self):
+        self.new_user.save_user()
+        newUser = User('Mary','Mary1234')
+        newUser.save_user()
+
+        useer = User.user_exist('Mary')
+        self.assertTrue(useer)
+
+
+
+
 
 
 
