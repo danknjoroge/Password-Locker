@@ -101,9 +101,40 @@ def main():
                         print(f'Successfully created credentials for {accountName} account')
 
                     elif code == 'dc':
-                        if display_credentials(accountName):
-                            print(f'{accountName} credentials')
-                            
+                        if display_credentials():
+                            print(f' Account Credential Details')
+                            print('-'*10)
+
+                            for credential in display_credentials():
+                                print(f'Account:...{credential.account}')
+
+                                print(f'Username:...{credential.user_name}')
+                                print(f'Password:...{credential.password}')
+                                print('-'*10)
+                        
+                        else:
+                            print('You have no existing credentials')
+
+                    elif code == 'gc':
+                        '''creating account with generated password'''
+                        print('Account with generated password')
+                        print('-'*10)
+
+                        print('Input account name')
+                        accountName= input()
+                        print('Input Username of account')
+                        username= input()
+
+                        '''save account details credentials withgenerated password'''
+                        save_credentials(Credentials(accountName, username,(generate_password(accountName)) ))
+                        print(f'Password for {accountName} have been generated')
+
+                    elif code == 'ex':
+                        print(f'Thank you {username} for using our application')
+                        break
+
+                    else:
+                        print(f'{code} is not available in our options. Please confirm the options and try again!')
                         
 
 
