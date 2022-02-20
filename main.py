@@ -33,7 +33,7 @@ def create_credentials(accountName,accountUsername,accountPassword):
 def save_credentials(credentials):
     credentials.save_credential()
 
-def delete_credentials(credentials):
+def delete_credential(credentials):
     credentials.delete_credentials()
 
 def display_credentials():
@@ -43,6 +43,9 @@ def generate_password(accountName):
     password = Credentials.generate_password()
     return password
 
+def search_account(account):
+    return Credentials.find_credentials()
+
 def main():
     print("""Welcome to password locker! \n
     What is your name?
@@ -51,7 +54,7 @@ def main():
     print(f'Hello {name}, enjoy as you explore our applications!')
 
     while True:
-        print("Use the following codes \n cr: create user account \n log: login to your account \n dis: display names of the user \n ex: exit from the account")
+        print("Use the following codes \n cr: create user account \n log: login to your account \n ex: exit from the account")
         code = input().lower()
         
         if code == 'cr':
@@ -82,7 +85,7 @@ def main():
                 login_user(username, password)
                 print(f'Welcome {username} Select the service you want below')
                 while True:
-                    print('Select shortcode related to servce you want \n ca: add a credential \n dc: display credentials \n gc: generate password for account \n ex: back to main menu')
+                    print('Select shortcode related to servce you want: \n ca: Add a credential \n dc: Display credentials \n gc: Generate password for account\n del: Delete Credentials not in use \n ex: back to main menu')
                     code = input().lower()
                     if code == 'ca':
                         print('Create a new Account Credential')
@@ -129,6 +132,21 @@ def main():
                         save_credentials(Credentials(accountName, username,(generate_password(accountName)) ))
                         print(f'Password for {accountName} have been generated')
 
+                    elif code == 'del':
+                        print('Enter account name of credentials to delete')
+                        accountName = input().lower()
+                        if search_account(accountName):
+                            search = search_account(accountName)
+                            print('-'*10)
+
+                            search.delete_credential()
+
+                            print(f'{accountName} credential details deleted')
+                        else:
+                            print(f'Account credentials doesn\'t exist')
+
+
+
                     elif code == 'ex':
                         print(f'Thank you {username} for using our application')
                         break
@@ -136,14 +154,11 @@ def main():
                     else:
                         print(f'{code} is not available in our options. Please confirm the options and try again!')
                         
-
-
-
-        
-
-
-
-
+        elif code == 'ex':
+            print('Thank you for visiting our site')
+            break
+        else:
+            print('Please check the code clearly and try again')
 
 
 if __name__ == "__main__":

@@ -1,3 +1,4 @@
+import pyperclip
 from random import choice
 import string
 from user import User
@@ -22,10 +23,12 @@ class Credentials:
 
     
     @classmethod
-    def find_credentials(cls, name):
+    def find_credentials(cls, account):
         for credential in cls.crededential_list:
-            if credential.user_name == name:
-                return Credentials.crededential_list.account
+            if credential.account == account:
+                return True
+
+        return False
         
 
     @classmethod
@@ -44,4 +47,7 @@ class Credentials:
         generatedPassword = ''.join(choice(passCombination) for size in range(stringSize))
         return generatedPassword
 
-    
+    @classmethod
+    def copy_password(cls, account):
+        copiedPassword = Credentials.find_credentials(account)
+        pyperclip.copy(copiedPassword.password)

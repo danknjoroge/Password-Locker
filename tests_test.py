@@ -1,3 +1,4 @@
+import pyperclip
 import unittest
 from credentials import Credentials
 from user import User
@@ -90,8 +91,8 @@ class TestCredentials(unittest.TestCase):
     #     newCredential = Credentials('twitter','Joy','Joy123')
     #     newCredential.save_credential()
 
-    #     existCred = Credentials.find_credentials('joy')
-    #     self.assertEqual(existCred.account, newCredential.account)  
+    #     existCred = Credentials.find_credentials('Daniel')
+    #     self.assertEqual(existCred.user_name, newCredential.account)  
 
 
     def test_credentials_exists(self):
