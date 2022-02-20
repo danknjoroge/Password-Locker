@@ -67,6 +67,12 @@ class TestCredentials(unittest.TestCase):
         self.new_credentials.save_credential()
         self.assertEqual(len(Credentials.crededential_list),1)
 
+    def test_save_multiple_credentials(self):
+        self.new_credentials.save_credential()
+        newCredential = Credentials('twitter','Joy','Joy123')
+        newCredential.save_credential()
+
+        self.assertEqual(len(Credentials.crededential_list),2)
 
     def test_delete_credentials(self):
         self.new_credentials.save_credential()
@@ -76,10 +82,30 @@ class TestCredentials(unittest.TestCase):
         self.new_credentials.delete_credentials()
         self.assertEqual(len(Credentials.crededential_list),1)
 
-    
+    def test_display_credentials(self):
+        self.assertEqual(Credentials.display_credentials(), Credentials.crededential_list)
+
+    def test_find_credentials(self):
+        self.new_credentials.save_credential()
+        newCredential = Credentials('twitter','Joy','Joy123')
+        newCredential.save_credential()
+
+        existCred = Credentials.find_credentials('joy')
+        self.assertEqual(existCred.account, newCredential.account)  
 
 
+    def test_credentials_exists(self):
+        self.new_credentials.save_credential()
+        newCredential = Credentials('twitter','Joy','Joy123')
+        newCredential.save_credential()
 
+
+        existCred = Credentials.credential_exists('twitter')
+        self.assertTrue(existCred)
+
+    def test_generate_password(self):
+        genPass = self.new_credentials.generate_password()
+        self.assertEqual(len(genPass), 10)
 
 
 if __name__ == '__main__':

@@ -22,10 +22,10 @@ class Credentials:
 
     
     @classmethod
-    def find_credentials(cls, account):
+    def find_credentials(cls, name):
         for credential in cls.crededential_list:
-            if credential.account == account:
-                return True
+            if credential.user_name == name:
+                return Credentials.crededential_list.account
         
 
     @classmethod
