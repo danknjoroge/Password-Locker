@@ -1,6 +1,4 @@
 
-# from credentials import Credentials
-
 class User:
     '''
     A user class that will be used to generate class instances user
@@ -28,10 +26,13 @@ class User:
 
 
     def delete_user(self):
+        '''Method that deletes existing user'''
         User.user_list.remove(self)
 
     @classmethod
     def login(cls,username,password):
+        '''Method to check if user and if exists allow users to login into their account'''
+
         for user in cls.user_list:
             if user.username == username and user.password == password:
                 return User.user_list
@@ -39,6 +40,7 @@ class User:
 
     @classmethod
     def user_exist(cls,username):
+        ''' check if user exists in the application'''
         for user in cls.user_list:
             if user.username == username:
                 return True
