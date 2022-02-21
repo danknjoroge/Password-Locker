@@ -98,26 +98,28 @@ class TestCredentials(unittest.TestCase):
 
         self.assertEqual(len(Credentials.crededential_list),2)
 
+  
+
     def test_delete_credentials(self):
-        '''test case to check if we can remove a credential entry from the list'''
         self.new_credentials.save_credential()
         newCredential = Credentials('twitter','Joy','Joy123')
         newCredential.save_credential()
-
-        self.new_credentials.delete_credentials()
+        self.new_credentials.delete_credentials(newCredential.account)
         self.assertEqual(len(Credentials.crededential_list),1)
+
+
 
     def test_display_credentials(self):
         '''a test case to check if we can output all credentials present and their related account'''
         self.assertEqual(Credentials.display_credentials(), Credentials.crededential_list)
 
-    # def test_find_credentials(self):
-    #     self.new_credentials.save_credential()
-    #     newCredential = Credentials('twitter','Joy','Joy123')
-    #     newCredential.save_credential()
+    def test_find_credentials(self):
+        self.new_credentials.save_credential()
+        newCredential = Credentials('twitter','Joy','Joy123')
+        newCredential.save_credential()
 
-    #     existCred = Credentials.find_credentials('Daniel')
-    #     self.assertEqual(existCred.user_name, newCredential.account)  
+        found_credential = Credentials.find_credentials('twitter')
+        self.assertEqual(found_credential.account, newCredential.account)  
 
 
     def test_credentials_exists(self):

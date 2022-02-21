@@ -39,9 +39,10 @@ def save_credentials(credentials):
     '''function to save credentials'''
     credentials.save_credential()
 
-def delete_credential(credentials):
+
+def delete_credentials(credentials_list):
     '''function to delete credentials'''
-    credentials.delete_credentials()
+    Credentials.delete_credentials(credentials_list)
 
 def display_credentials():
     '''function to display all present credentials information'''
@@ -54,13 +55,13 @@ def generate_password(accountName):
 
 def search_account(account):
     '''function to search an account present'''
-    return Credentials.find_credentials()
+    return Credentials.find_credentials(account)
 
 def main():
     '''
     function to run the password locker account
     '''
-    print("""Welcome to password locker! \n
+    print("""Welcome to password locker! \n Where your credeentials are stored safely and in order.
     What is your name?
     """)
     name = input()
@@ -70,7 +71,7 @@ def main():
         '''
         Loop that will control running of the application
         '''
-        print("Use the following codes \n cr: create user account \n log: login to your account \n ex: exit from the account")
+        print("Use the following codes to interact wit the password-locker application \n cr: create user account \n log: login to your account \n ex: exit from the account")
         code = input().lower()
         
         if code == 'cr':
@@ -106,7 +107,7 @@ def main():
                 login_user(username, password)
                 print(f'Welcome {username} Select the service you want below')
                 while True:
-                    print('Select shortcode related to servce you want: \n ca: Add a account credential with typed password  \n dc: Display Credentials Details present \n gc: Create account with generated password\n del: Delete Credentials not in use \n ex: back to main menu')
+                    print('Select shortcode related to servce you want: \n ca: Add  account Credential with typed password  \n dc: Display Account Credentials Details present \n gc: Create Account credentials with generated password\n del: Delete Credentials not in use \n ex: back to main menu')
                     code = input().lower()
                     if code == 'ca':
                         '''
@@ -136,8 +137,7 @@ def main():
                             print('-'*10)
 
                             for credential in display_credentials():
-                                print(f'Account:...{credential.account}')
-
+                                print(f'Account:....{credential.account}')
                                 print(f'Username:...{credential.user_name}')
                                 print(f'Password:...{credential.password}')
                                 print('-'*10)
@@ -167,17 +167,8 @@ def main():
                         '''
                         print('Enter account name of credentials to delete')
                         accountName = input().lower()
-                        if search_account(accountName):
-                            search = search_account(accountName)
-                            print('-'*10)
-
-                            search.delete_credential()
-
-                            print(f'{accountName} credential details deleted')
-                        else:
-                            print(f'Account credentials doesn\'t exist')
-
-
+                        delete_credentials(accountName)
+                        print(f'{accountName} Account Details deleted')
 
                     elif code == 'ex':
                         print(f'Thank you {username} for using our application')

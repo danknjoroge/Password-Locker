@@ -18,9 +18,16 @@ class Credentials:
         '''method to add credentials in the list'''
         Credentials.crededential_list.append(self)
 
-    def delete_credentials(self):
+    
+    @classmethod
+    def delete_credentials(cls, account):
         '''method to delete user credentials from the list'''
-        Credentials.crededential_list.remove(self)
+        for crededential_list in cls.crededential_list:
+            if crededential_list.account == account:
+                cls.crededential_list.remove(crededential_list)
+                return cls.crededential_list
+
+
 
     @classmethod
     def display_credentials(cls):
@@ -33,9 +40,9 @@ class Credentials:
         '''method to find credentials by seraching by account name'''
         for credential in cls.crededential_list:
             if credential.account == account:
-                return True
+                return credential
 
-        return False
+       
         
 
     @classmethod

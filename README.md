@@ -1,4 +1,4 @@
-# Password-Locker
+## Password-Locker
 ## By Daniel Njoroge
 
 ## Description
